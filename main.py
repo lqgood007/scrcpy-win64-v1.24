@@ -14,9 +14,8 @@ print('本次共扫描出%s'%(deviceList))
 
 for device in deviceList:
     print("正在准备%s设备的投屏"%device)
-    command = "scrcpy -m 720 -t --power-off-on-close -w --window-borderless --window-title {} --bit-rate 4M -S -s {}".format(device,device)
+    command = "scrcpy -m 960 -t --power-off-on-close -w --window-borderless --window-title {} --bit-rate 4M -S -s {}".format(device,device)
 
     # --window - borderless
     print(command)
     t = os.popen(command)
-    
