@@ -9,12 +9,69 @@ import win32con
 
 class CV():
     def __init__(self):
-        print('init')
+        print('init CV')
 
-    def get_window_img(self,rect):
+    def get_rect_img(self,rect):
         img = pyautogui.screenshot(region=rect)
         img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
         return img
+
+    def check_engery(self):
+        pass
+
+    def check_bag_full(self):
+        pass
+
+    def check_mission_hand(self):
+        pass
+
+    def check_mission_going(self):
+        pass
+
+    def check_enter_under_button(self):
+        pass
+
+    def get_player_position(self):
+        pass
+
+    """
+    battle check npc battle_over itempick map_arrow battle_arrow
+    """
+    def check_close_button(self):
+        pass
+
+    def check_mission_passed(self):
+        pass
+
+    def check_award_pick(self):
+        pass
+
+    def check_repair(self):
+        pass
+
+    def check_disassemble(self):
+        pass
+
+    def check_next_mission(self):
+        pass
+
+    def check_next_mission_button(self):
+        pass
+
+class GameStage():
+    def __init__(self):
+        print('init GameStage')
+        self.player_stage = ['1','2','3','4','5']
+        self.game_stage = ['town','underground','ui','switch_player']
+
+class InputManager():
+    def __init__(self):
+        pass
+
+    def point_random(self):
+        pass
+
+
 
 
 if __name__ == '__main__':
