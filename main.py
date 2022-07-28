@@ -1,6 +1,7 @@
 import os
 import time
 
+
 s=os.popen("adb devices")
 a=s.read()
 list=a.split('\n')
@@ -14,8 +15,8 @@ print('本次共扫描出%s'%(deviceList))
 
 for device in deviceList:
     print("正在准备%s设备的投屏"%device)
-    command = "scrcpy -m 960 -t --power-off-on-close -w --window-borderless --window-title {} --bit-rate 4M -S -s {}".format(device,device)
+    command = "scrcpy -m 960 --power-off-on-close -w --window-borderless --window-title {} --bit-rate 4M -S -s {}".format(device,device)
+    t = os.popen(command)
 
     # --window - borderless
     print(command)
-    t = os.popen(command)
