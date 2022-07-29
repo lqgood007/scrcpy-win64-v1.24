@@ -11,7 +11,7 @@ class CV():
     def __init__(self):
         print('init CV')
 
-    def get_rect_img(self,rect):
+    def get_rect_img(self,rect):##30fps
         img = pyautogui.screenshot(region=rect)
         img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
         return img
@@ -113,12 +113,9 @@ if __name__ == '__main__':
     print(app_x,app_y)
     i = 0
     screen_CV = CV()
-    while i <= 1000:
-        h = win32gui.FindWindow(None, deviceList[0])
-        rect = win32gui.GetWindowRect(h)
-        img = screen_CV.get_window_img(rect = rect)
-        i += 1
-        cv2.imshow("screenshot", img)
-        cv2.waitKey(0)
+
+    t = time.time()
+    h = win32gui.FindWindow(None, deviceList[0])
+    rect = win32gui.GetWindowRect(h)
 
     exit()
