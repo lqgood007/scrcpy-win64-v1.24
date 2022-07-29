@@ -11,7 +11,7 @@ class CV():
     def __init__(self):
         print('init CV')
 
-    def get_rect_img(self,rect):##30fps
+    def get_rect_img(self,rect):##1920*1080 = 30fps
         img = pyautogui.screenshot(region=rect)
         img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
         return img
