@@ -104,7 +104,7 @@ if __name__ == '__main__':
         screen_id = (screen_count // ((1920//app_y)*(1080//app_x)))
         screen_xcoor = (screen_count % (1920//app_y))*app_y+ 1920*screen_id
         screen_ycoor = (screen_count % ((1920//app_y)*(1080//app_x))) // (1920//app_y)*app_x
-        win32gui.SetWindowPos(h, win32con.HWND_TOPMOST, screen_xcoor, screen_ycoor, rect[2] - rect[0], rect[3] - rect[1],
+        win32gui.SetWindowPos(h, win32con.TRANSPARENT, screen_xcoor, screen_ycoor, rect[2] - rect[0], rect[3] - rect[1],
                               win32con.SWP_SHOWWINDOW)
         window_dic[device] = {'pid':h}
 
