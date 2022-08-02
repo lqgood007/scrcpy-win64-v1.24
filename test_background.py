@@ -16,7 +16,7 @@ def doClick(cx, cy,hwnd):
 
 
 h = win32gui.FindWindow(None, "R5CN710WMYD")
-h = 5245560
+h = 13046586
 # for i in range(100):
 #         time.sleep(0.05)
 #         win32api.keybd_event(13, 0, 0, 0)

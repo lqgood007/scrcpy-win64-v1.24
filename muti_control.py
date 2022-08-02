@@ -16,48 +16,6 @@ class CV():
         img = cv2.cvtColor(np.asarray(img), cv2.COLOR_RGB2BGR)
         return img
 
-    def check_engery(self):
-        pass
-
-    def check_bag_full(self):
-        pass
-
-    def check_mission_hand(self):
-        pass
-
-    def check_mission_going(self):
-        pass
-
-    def check_enter_under_button(self):
-        pass
-
-    def get_player_position(self):
-        pass
-
-    """
-    battle check npc battle_over itempick map_arrow battle_arrow
-    """
-    def check_close_button(self):
-        pass
-
-    def check_mission_passed(self):
-        pass
-
-    def check_award_pick(self):
-        pass
-
-    def check_repair(self):
-        pass
-
-    def check_disassemble(self):
-        pass
-
-    def check_next_mission(self):
-        pass
-
-    def check_next_mission_button(self):
-        pass
-
 class GameStage():
     def __init__(self):
         print('init GameStage')
@@ -75,17 +33,22 @@ class InputManager():
 
 
 if __name__ == '__main__':
-    s = os.popen("adb devices")
-    a = s.read()
-    list = a.split('\n')
+    list = os.popen("adb devices").read().split('\n')
+    print(list)
     deviceList = []
     for temp in list:
         if len(temp.split()) > 1:
             if temp.split()[1] == 'device':
                 deviceList.append(temp.split()[0])
     command = ""
+    if len(deviceList) == 0:
+        print('no devices')
+        pass
     print('本次共扫描出%s' % (deviceList))
-
+    exit()
+    if len(deviceList) == 0:
+        print('no device')
+        exit()
     window_dic = {}
     screen_count = 0
     screen_height = 960
@@ -104,7 +67,7 @@ if __name__ == '__main__':
         screen_id = (screen_count // ((1920//app_y)*(1080//app_x)))
         screen_xcoor = (screen_count % (1920//app_y))*app_y+ 1920*screen_id
         screen_ycoor = (screen_count % ((1920//app_y)*(1080//app_x))) // (1920//app_y)*app_x
-        win32gui.SetWindowPos(h, win32con.TRANSPARENT, screen_xcoor, screen_ycoor, rect[2] - rect[0], rect[3] - rect[1],
+        win32gui.SetWindowPos(h, win32con.TRANSPARENT, screen_xcoor-1920, screen_ycoor, rect[2] - rect[0], rect[3] - rect[1],
                               win32con.SWP_SHOWWINDOW)
         window_dic[device] = {'pid':h}
 
