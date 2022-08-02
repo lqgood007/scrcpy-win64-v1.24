@@ -47,3 +47,28 @@ if __name__ == '__main__':
     # print(GetDevicesList())
     Boot_Grid_AndroidScreen(GetDevicesList())
     swap_test()
+
+
+
+
+"""
+adb shell pm list packages -3  查看三方应用
+
+
+adb shell am start com.netease.g67/com.netease.game.MessiahNativeActivity            启动暗黑
+
+adb shell am force-stop com.netease.g67
+
+adb shell input keyboard text "abc"  模拟输入
+
+
+adb shell input tap 500 500  模拟点击
+
+adb shell input swipe 500 300 400 300  模拟滑动  （x,y）->(x,y)
+
+adb shell input swipe 500 300 100 300 500
+adb shell input swipe 100 300 100 300 50000
+
+adb shell input tap 600 800
+
+"""

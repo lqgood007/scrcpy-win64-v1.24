@@ -1,41 +1,15 @@
 import keyboard
 import time
 import subprocess
-down_key_list = []
+import adbUtil
 
-subprocess_dic = {}
-click_tick = 0.05
-click_timer = {}
 
-def check_key_code(code):
-    """
-    attack-j
-    """
-    print(code.name, code.event_type)
-
-    # if code.name == 'j' and code.event_type == 'down':
-    #     x,y = 1117,554
-    #     t = subprocess.Popen("adb shell input tap {} {}".format(x,y))
-    # """
-    # 1/2/3/4 技能
-    # """
-    # if code.name == '1' and code.event_type == 'down':
-    #     x,y = 1117,554
-    #     t = subprocess.Popen("adb shell input tap {} {}".format(x,y))
-    # if code.name == '2' and code.event_type == 'down':
-    #     x,y = 1117,554
-    #     t = subprocess.Popen("adb shell input tap {} {}".format(x,y))
-    # if code.name == '3' and code.event_type == 'down':
-    #     x,y = 1117,554
-    #     t = subprocess.Popen("adb shell input tap {} {}".format(x,y))
-    # if code.name == '4' and code.event_type == 'down':
-    #     x,y = 1117,554
-    #     t = subprocess.Popen("adb shell input tap {} {}".format(x,y))
 t_fps = 1/30
 t = time.time()
 class Key_Manager():
     def __init__(self):
         self.key_pool = set()
+        self.device_list = adbUtil.GetDevicesList()
     def key_callback(self,code):
         if time.time()-t<t_fps:
             return
@@ -54,13 +28,13 @@ class Key_Manager():
             print('ws')
         if 'w' in self.key_pool and 'd' in self.key_pool:
             print('wd')
-        if 'q' in self.key_pool:
+        if 'a' in self.key_pool:
             print('a')
-        if 'q' in self.key_pool:
+        if 's' in self.key_pool:
             print('s')
-        if 'q' in self.key_pool:
+        if 'd' in self.key_pool:
             print('d')
-        if 'q' in self.key_pool:
+        if 'w' in self.key_pool:
             print('w')
         if 'q' in self.key_pool:
             print('q')
@@ -83,18 +57,11 @@ class Key_Manager():
     def tap_func(self,x,y):
         s = subprocess.Popen("adb shell input tap {} {}".format(x, y))
 
-
-
-
-class A():
-    def __init__(self):
-        self.Global_p1= 0
-    def keytest(self):
-        self.Global_p1+=1
+    def swipe_func(self,x,y):
+        s = subprocess.Popen("adb shell input swipe {} {} 200".format(x, y))
 
 
 if __name__ == '__main__':
     km = Key_Manager()
     keyboard.hook(lambda e: km.key_callback(e))
-    keyboard.wait('Ctrl')
 
