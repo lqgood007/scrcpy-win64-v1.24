@@ -7,9 +7,9 @@ import adbUtil
 t_fps = 1/30
 t = time.time()
 class Key_Manager():
-    def __init__(self):
+    def __init__(self,device_list):
         self.key_pool = set()
-        self.device_list = adbUtil.GetDevicesList()
+        self.device_list = device_list
     def key_callback(self,code):
         if time.time()-t<t_fps:
             return
@@ -55,13 +55,19 @@ class Key_Manager():
             print('esc')
 
     def tap_func(self,x,y):
-        s = subprocess.Popen("adb shell input tap {} {}".format(x, y))
+        for i in self.device_list:
+            s = subprocess.Popen("adb shell -s {} input tap {} {}".format(i,x, y))
 
     def swipe_func(self,x,y):
-        s = subprocess.Popen("adb shell input swipe {} {} 200".format(x, y))
+        for i in self.device_list:
+            s = subprocess.Popen("adb shell -s {} input swipe {} {} 200".format(i,x, y))
 
 
 if __name__ == '__main__':
-    km = Key_Manager()
+    device_list = adbUtil.GetDevicesList()
+    adbUtil.Boot_Grid_AndroidScreen(device_list)
+    time.sleep(5)
+    km = Key_Manager(device_list)
+
     keyboard.hook(lambda e: km.key_callback(e))
 
